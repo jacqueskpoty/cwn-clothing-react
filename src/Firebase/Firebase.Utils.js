@@ -13,11 +13,45 @@ const config = {
         measurementId: "G-GSPZE03FHT"
 };
 
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+
+        if(!userAuth) return;
+        
+        const userRef = firestore.doc(`/users/${userAuth.uid}`);
+        const snapShot = await userRef.get();
+        console.log(snapShot);
+        if(!snapShot.exists){
+                console.log(userAuth);
+                console.log(additionalData);
+                
+                const {displayName, email} = userAuth;
+
+                const createdAt = new Date();
+                
+                try {
+                        await userRef.set({
+                              displayName,
+                              email,
+                              createdAt,
+                              ...additionalData  
+                        })
+                } catch (error) {
+                        console.log("Error creating user", error.message);
+                }
+        }
+        return userRef;
+}
+
+//Initializing the configuration of forebase
 firebase.initializeApp(config);
 
+//exporting the auth object that holds the sign in data
 export const auth = firebase.auth();
+
+//exporting the firestore service to help store and retrieve data from the database
 export const firestore = firebase.firestore();
 
+//Calling google sign in pop up
 const provider = new firebase.auth.GoogleAuthProvider()
 provider.setCustomParameters({ prompt:'select_account' });
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
