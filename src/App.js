@@ -12,13 +12,16 @@ import { setCurrentUser } from './Redux/User/User.Action';
 import { connect } from 'react-redux';
 import { currentUserSelector } from './Redux/User/User.Selector';
 import { createStructuredSelector } from 'reselect';
+import { collectionItemsPreviewSelector } from './Redux/Collection/Collection.Selector';
 
 class App extends React.Component{
 
   unsuscribeFromAuth = null;
 
   componentDidMount(){
+
     const {setCurrentUser} = this.props;
+ 
     this.unsuscribeFromAuth = auth.onAuthStateChanged( async (userAuth) => {      
       if(userAuth){
         const userRef = await createUserProfileDocument(userAuth);
@@ -32,6 +35,8 @@ class App extends React.Component{
         });
       }
       setCurrentUser(userAuth);
+
+      /**addCollectionsAndDocuments('collections', collectionItems.map(({title, items}) => ({title, items})));**/
   });
 }
 
