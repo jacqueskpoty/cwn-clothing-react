@@ -12,7 +12,6 @@ import { setCurrentUser } from './Redux/User/User.Action';
 import { connect } from 'react-redux';
 import { currentUserSelector } from './Redux/User/User.Selector';
 import { createStructuredSelector } from 'reselect';
-import { collectionItemsPreviewSelector } from './Redux/Collection/Collection.Selector';
 
 class App extends React.Component{
 

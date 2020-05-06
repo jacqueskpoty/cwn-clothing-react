@@ -67,8 +67,9 @@ export const addCollectionsAndDocuments = async(collectionKey, collectionToAdd) 
 
 //transform collections fetched from database
 export const transformCollectionMap = (collections) =>{
-        const collectionMap =  collections.docs.map( ({title,items}) => {
-               const {title,items} = doc.data;
+        
+        const collectionMap =  collections.docs.map( doc => {
+               const {title,items} = doc.data();
  
                return{
                  routeName: encodeURI(title.toLowerCase()),

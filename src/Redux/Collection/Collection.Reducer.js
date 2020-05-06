@@ -1,7 +1,7 @@
-import CollectionTypes from "./Collection.Type";
+import CollectionTypes  from "./Collection.Type";
 
 const INITIAL_STATE = {
-    collectionItems: {}
+    collectionItems: null
 }
 
 const CollectionReducer = (state=INITIAL_STATE, action) => {

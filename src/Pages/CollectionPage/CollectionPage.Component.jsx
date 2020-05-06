@@ -6,7 +6,7 @@ import CollectionItem from '../../Components/CollectionItem/CollectionItem.Compo
 
 
 const CollectionPage = ({collection}) => {
-
+   
     const {title,items} = collection;
     return(
         <div className='collection-page'>
@@ -22,7 +22,7 @@ const CollectionPage = ({collection}) => {
 }
 
 const mapStateToProps = (state,ownprops) => ({
-    collection: collectionIdSelector(ownprops.match.params.collectionId)(state)
-})
+        collection: collectionIdSelector(ownprops.match.params.collectionId)(state)
+});
 
 export default connect(mapStateToProps)(CollectionPage);

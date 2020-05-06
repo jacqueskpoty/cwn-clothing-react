@@ -5,12 +5,15 @@ const collectionSelector = (state) => state.collection;
 export const collectionItemsSelector = createSelector([collectionSelector], (collection)=> collection.collectionItems);
 
 export const collectionItemsPreviewSelector = createSelector([collectionItemsSelector],
-    (collectionItems) =>  Object.keys(collectionItems).map(key => (collectionItems[key])))
+    (collectionItems) => collectionItems? Object.keys(collectionItems).map(key => (collectionItems[key])):[] 
+)
+    
 
 export const collectionIdSelector = (collectionUrlParam) =>
+
     createSelector(
-        [collectionItemsSelector], (collectionItems) => collectionItems[collectionUrlParam]
-
+        [collectionItemsSelector], (collectionItems) => {            
+            return collectionItems[collectionUrlParam];
+        }
+        
     )
-
-    
