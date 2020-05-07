@@ -4,7 +4,7 @@ import {SpinnerContainer,SpinnerOverlay} from './WithSpinner.Style';
  const WithSpinner = (WrappedComponent) => 
     {   
        const spinner = ({isLoading, ...otherProps}) => {
-
+               
                 return isLoading? (
                     <SpinnerOverlay>
                         <SpinnerContainer/>
