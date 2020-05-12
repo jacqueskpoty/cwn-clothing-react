@@ -48,9 +48,20 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 //Calling google sign in pop up
-const provider = new firebase.auth.GoogleAuthProvider()
-provider.setCustomParameters({ prompt:'select_account' });
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt:'select_account' });
+
+//export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
+
+//check if a user is connected 
+export const getCurrentUser = () => {
+        return new Promise((resolve,reject) => {
+               const unsuscribe =  auth.onAuthStateChanged(authUser =>{
+                        unsuscribe();
+                        resolve(authUser);
+                },reject)
+        })
+}
 
 //add collection to firestore
 export const addCollectionsAndDocuments = async(collectionKey, collectionToAdd) => {

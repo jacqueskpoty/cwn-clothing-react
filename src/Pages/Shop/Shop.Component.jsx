@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
-import {UpdateCollectionsData} from '../../Redux/Collection/Collection.Action';
+import {UpdateCollectionsDataStart} from '../../Redux/Collection/Collection.Action';
 import {connect} from 'react-redux';
 import CollectionOvervewContainer from '../../Components/CollectionOverview/CollectionOverview.Container';
 import CollectionPageContainer from '../CollectionPage/CollectionPage.Container'; 
@@ -8,8 +8,8 @@ import CollectionPageContainer from '../CollectionPage/CollectionPage.Container'
 class Shop extends React.Component{ 
 
     componentDidMount(){
-        const {UpdateCollectionsData} = this.props;
-        UpdateCollectionsData(); 
+        const {UpdateCollectionsDataStart} = this.props;
+        UpdateCollectionsDataStart(); 
     }
 
     render(){
@@ -24,8 +24,8 @@ class Shop extends React.Component{
 }     
 
 const mapDispatchToProps = dispatch => ({
-    UpdateCollectionsData: collections => 
-    dispatch(UpdateCollectionsData(collections))
+    UpdateCollectionsDataStart: () => 
+    dispatch(UpdateCollectionsDataStart())
 });
 
 export default connect(null,mapDispatchToProps)(Shop)
