@@ -1,26 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Route} from 'react-router-dom';
 import {UpdateCollectionsDataStart} from '../../Redux/Collection/Collection.Action';
 import {connect} from 'react-redux';
 import CollectionOvervewContainer from '../../Components/CollectionOverview/CollectionOverview.Container';
 import CollectionPageContainer from '../CollectionPage/CollectionPage.Container'; 
 
-class Shop extends React.Component{ 
+const Shop = ({UpdateCollectionsDataStart,match}) => { 
 
-    componentDidMount(){
-        const {UpdateCollectionsDataStart} = this.props;
-        UpdateCollectionsDataStart(); 
-    }
-
-    render(){
-        const {match} = this.props;
-        return(
-            <div className='shop-page'> 
-                <Route exact path={`${match.path}`}   component={CollectionOvervewContainer} />
-                <Route path={`${match.path}/:collectionId`} component={CollectionPageContainer} />
-            </div>
-        );
-    }
+    useEffect(()=>{
+        UpdateCollectionsDataStart();
+    },[UpdateCollectionsDataStart])
+  
+    return(
+        <div className='shop-page'> 
+            <Route exact path={`${match.path}`}   component={CollectionOvervewContainer} />
+            <Route path={`${match.path}/:collectionId`} component={CollectionPageContainer} />
+        </div>
+    );
+    
 }     
 
 const mapDispatchToProps = dispatch => ({
